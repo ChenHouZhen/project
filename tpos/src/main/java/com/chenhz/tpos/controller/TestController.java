@@ -14,6 +14,6 @@ public class TestController {
 
     @GetMapping("one")
     public String test(){
-        return "success";
+        return "success tpos module";
     }
 }
