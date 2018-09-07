@@ -24,7 +24,18 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.16</version>
+		</dependency>
 
+		<!-- 公共模块 -->
+		<dependency>
+			<groupId>com.chenhz</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
