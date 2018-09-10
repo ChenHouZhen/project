@@ -1,7 +1,7 @@
 package com.chenhz.faker.dao;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.chenhz.faker.entity.UserEntity;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>

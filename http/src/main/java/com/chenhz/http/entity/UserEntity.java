@@ -1,10 +1,14 @@
-package com.chenhz.test.entity;
+package com.chenhz.http.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.chenhz.http.exception.ClientException;
+import com.chenhz.http.exception.ServerException;
+import com.chenhz.http.utils.UnmarshallerContext;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -15,7 +19,7 @@ import java.io.Serializable;
  * @since 2018-09-07
  */
 @TableName("tb_user")
-public class UserEntity implements Serializable {
+public class UserEntity extends AcsResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -148,5 +152,10 @@ public class UserEntity implements Serializable {
         ", modifiedTime=" + modifiedTime +
         ", modifiedUser=" + modifiedUser +
         "}";
+    }
+
+    @Override
+    public AcsResponse getInstance(UnmarshallerContext var1) throws ClientException, ServerException {
+        return null;
     }
 }

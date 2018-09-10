@@ -1,9 +1,9 @@
 package com.chenhz.faker.service.impl;
 
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.chenhz.faker.entity.UserEntity;
 import com.chenhz.faker.dao.UserDao;
 import com.chenhz.faker.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

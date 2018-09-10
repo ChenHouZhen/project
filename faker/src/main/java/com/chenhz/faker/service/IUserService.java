@@ -1,7 +1,7 @@
 package com.chenhz.faker.service;
 
+import com.baomidou.mybatisplus.service.IService;
 import com.chenhz.faker.entity.UserEntity;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
