@@ -11,10 +11,10 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author chz
- * @since 2018-09-07
+ * @since 2018-09-11
  */
 @Controller
-@RequestMapping("/userEntity")
+@RequestMapping("/user")
 public class UserController {
 
 }

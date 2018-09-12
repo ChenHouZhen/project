@@ -1,9 +1,9 @@
 package com.chenhz.faker.service.impl;
 
-import com.chenhz.faker.entity.UserEntity;
+import com.chenhz.faker.entity.User;
 import com.chenhz.faker.dao.UserDao;
 import com.chenhz.faker.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author chz
- * @since 2018-09-07
+ * @since 2018-09-11
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUserService {
 
 }

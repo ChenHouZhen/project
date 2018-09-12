@@ -1,11 +1,12 @@
 package com.chenhz.common;
 
-import com.baomidou.mybatisplus.annotation.DbType;
+
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.chenhz.common.enums.Application;
 
@@ -51,7 +52,6 @@ public abstract class GeneratorCode {
                 .setAuthor("chz")
                 .setOutputDir(System.getProperty("user.dir")+"/src/main/java")
                 .setFileOverride(true)
-                .setEntityName("%sEntity")
                 .setMapperName("%sDao");
 
         if (!serviceNameWithI){

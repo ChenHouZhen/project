@@ -1,7 +1,7 @@
 package com.chenhz.faker.dao;
 
-import com.chenhz.faker.entity.UserEntity;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.chenhz.faker.entity.User;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author chz
- * @since 2018-09-07
+ * @since 2018-09-11
  */
-public interface UserDao extends BaseMapper<UserEntity> {
+public interface UserDao extends BaseMapper<User> {
 
 }

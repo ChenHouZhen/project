@@ -12,6 +12,6 @@ public class TposGenerator extends GeneratorCode {
 
     @Test
     public void tposGenerator(){
-        this.generateByTables("tb_user");
+        this.generateByTables("userinfo");
     }
 }
