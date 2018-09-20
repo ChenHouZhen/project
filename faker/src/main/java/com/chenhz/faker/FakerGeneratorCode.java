@@ -13,7 +13,7 @@ public class FakerGeneratorCode extends GeneratorCode{
 
     @Test
     public void fakerGenerator(){
-        this.generateByTables("sys_user");
+        this.generateByTables("tb_area");
     }
 
 }
