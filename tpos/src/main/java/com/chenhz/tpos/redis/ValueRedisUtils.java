@@ -10,4 +10,12 @@ public class ValueRedisUtils {
 
     @Resource(name = "redisTemplate")
     private ValueOperations<String,Object> valueOperations;
+
+    public  Object get(String key){
+        return valueOperations.get(key);
+    }
+
+    public void set(String key,Object val){
+        valueOperations.set(key,val);
+    }
 }

@@ -1,4 +1,4 @@
-package com.chenhz.common.config;
+package com.chenhz.tpos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,10 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+/**
+ *  http://localhost:9003/swagger-ui.html#/
+ */
 
 @Configuration
 @EnableSwagger2
@@ -23,11 +27,11 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("对外开放接口API 文档")
-                .description("HTTP对外开放接口")
+                .title("SAMPLE 项目")
+                .description("TPOS 对外开放接口")
                 .version("1.0.0")
                 .termsOfServiceUrl("http://xxx.xxx.com")
-                .license("LICENSE")
+                //.license("LICENSE")
                 .licenseUrl("http://xxx.xxx.com")
                 .build();
     }

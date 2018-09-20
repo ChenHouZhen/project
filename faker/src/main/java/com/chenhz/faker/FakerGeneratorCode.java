@@ -1,6 +1,5 @@
 package com.chenhz.faker;
 
-import com.chenhz.common.GeneratorCode;
 import com.chenhz.common.enums.Application;
 import org.junit.Test;
 

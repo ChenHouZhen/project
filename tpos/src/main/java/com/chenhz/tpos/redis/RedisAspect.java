@@ -20,7 +20,7 @@ public class RedisAspect {
     @Value("${sample.redis.open: false}")
     private boolean open;
 
-    @Around("execution(* com.chenhz.tpos.redis.*(..))")
+    @Around("execution(* com.chenhz.tpos.redis..*Utils*(..))")
     public Object around(ProceedingJoinPoint point) {
         Object result = null;
         if (open){
