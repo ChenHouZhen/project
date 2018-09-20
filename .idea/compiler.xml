@@ -13,7 +13,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+      <module name="faker" target="1.8" />
+      <module name="http" target="1.8" />
+      <module name="sample" target="1.8" />
       <module name="test" target="1.8" />
+      <module name="tpos" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

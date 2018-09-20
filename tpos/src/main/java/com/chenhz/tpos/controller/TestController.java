@@ -21,19 +21,4 @@ public class TestController {
         return "success tpos module";
     }
 
-    public static void main(String[] args) {
-
-        String a = "abcdefg";
-        try {
-            String encode = Base64.getEncoder().encodeToString(a.getBytes("UTF-8"));
-            System.out.println(encode);
-            byte[] decode = Base64.getDecoder().decode(encode);
-            for (byte b:decode) {
-                System.out.print(b +"  ");
-            }
-            System.out.println(new String(decode,"UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
 }
