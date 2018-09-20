@@ -1,1 +1,29 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
+=======
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+>>>>>>> 44a536922da79a41844e5b63b4df3e740b674aca
