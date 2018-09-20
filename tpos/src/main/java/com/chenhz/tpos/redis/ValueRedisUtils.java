@@ -18,4 +18,8 @@ public class ValueRedisUtils {
     public void set(String key,Object val){
         valueOperations.set(key,val);
     }
+
+   /* public void del(String key){
+        valueOperations.
+    }*/
 }
