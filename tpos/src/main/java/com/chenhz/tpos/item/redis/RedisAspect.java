@@ -1,4 +1,4 @@
-package com.chenhz.tpos.redis;
+package com.chenhz.tpos.item.redis;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -20,7 +20,7 @@ public class RedisAspect {
     @Value("${sample.redis.open: false}")
     private boolean open;
 
-    @Around("execution(* com.chenhz.tpos.redis..*Utils*(..))")
+    @Around("execution(* com.chenhz.tpos.item.redis..*Utils*(..))")
     public Object around(ProceedingJoinPoint point) {
         Object result = null;
         if (open){

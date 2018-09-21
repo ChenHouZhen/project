@@ -1,4 +1,4 @@
-package com.chenhz.tpos.redis;
+package com.chenhz.tpos.item.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -54,7 +54,7 @@ public class RedisConfig {
         redisTemplate.setKeySerializer(stringSerializer);
         redisTemplate.setHashKeySerializer(stringSerializer);
         redisTemplate.setHashValueSerializer(stringSerializer);
-        redisTemplate.setValueSerializer(stringSerializer);
+        redisTemplate.setValueSerializer(jsonRedisSerializer);
         // 配置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;

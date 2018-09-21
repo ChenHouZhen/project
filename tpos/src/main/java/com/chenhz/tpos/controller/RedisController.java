@@ -1,13 +1,14 @@
 package com.chenhz.tpos.controller;
 
 import com.chenhz.common.entity.R;
-import com.chenhz.tpos.redis.*;
+import com.chenhz.tpos.entity.User;
+import com.chenhz.tpos.item.redis.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -96,6 +97,42 @@ public class RedisController {
     public R exists(@PathVariable("key") String key){
         boolean result = value.exists(key);
         return R.ok().put("exists", result);
+    }
+
+    @PostMapping("V/save/O")
+    @ApiOperation("存储对象")
+    public R saveObject(){
+        User user = new User();
+        user.setUsername("小小明");
+        user.setEmail("843207296@qq.com");
+        user.setMobile("11212085949");
+        user.setUserId(543545);
+        user.setCreateTime(new Date());
+        user.setStatus(1);
+        value.set("user",user);
+        return R.ok();
+    }
+
+    @GetMapping("V/get/O")
+    public User getobject(){
+        User user = (User) value.get("user");
+        System.out.println("name :"+user.getUsername());
+        System.out.println("phone :"+user.getMobile());
+        System.out.println("emain :"+user.getEmail());
+        System.out.println("status :"+user.getStatus());
+        return user;
+    }
+
+    @PostMapping("V/save/Long")
+    @ApiOperation("存储Long对象")
+    public R saveLong(){
+        value.set("Long",new Long("123456"));
+        value.set("long",123456L);
+        value.set("String", new String("abc"));
+        value.set("string","abc");
+        value.set("Integer",new Integer("123"));
+        value.set("int",123);
+        return R.ok();
     }
 
 
