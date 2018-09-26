@@ -28,13 +28,13 @@ public abstract class GeneratorCode {
 
     public void generateByTables(boolean serviceNameWithI,Application app,String ... tableNames){
 
-        String dbUrl = "jdbc:mysql://localhost:3306/sample?serverTimezone=UTC";
+        String dbUrl = "jdbc:mysql://182.61.40.111:3306/sample?serverTimezone=UTC";
         //数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
                 .setUsername("root")
-                .setPassword("123456")
+                .setPassword("Mypassword@123")
                 .setDriverName("com.mysql.jdbc.Driver");
 
         //策略配置
