@@ -22,7 +22,7 @@ import java.util.Locale;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class UserMain {
+public class Main {
 
     private IUserService userService;
 
@@ -30,10 +30,12 @@ public class UserMain {
 
     static Faker faker ;
 
+
     @BeforeClass
     public static void init(){
         log.info("加载实例......");
         faker = new Faker(new Locale("zh_CN"));
+
     }
 
     @Test
@@ -41,12 +43,12 @@ public class UserMain {
         List<User> users = new ArrayList<>();
         for (int i=0;i<10;i++){
             User user = new User();
+            user.setUsername(faker.name().name());
             user.setMobile(faker.phoneNumber().cellPhone());
-            user.setEmail(faker.name().prefix()+faker.name().suffix()+"@qq.com");
-            user.setPassword(""+faker.random().nextInt(9));
+            user.setEmail(faker.internet().emailAddress());
+            user.setPassword(""+faker.internet().password());
             user.setCreateTime(faker.date().birthday());
             user.setStatus(faker.random().nextInt(2));
-            user.setUsername(faker.name().name());
             users.add(user);
         }
         userService.insertBatch(users);
