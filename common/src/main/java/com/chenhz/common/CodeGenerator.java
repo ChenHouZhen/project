@@ -3,8 +3,8 @@ package com.chenhz.common;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.chenhz.common.enums.Application;
@@ -17,37 +17,108 @@ public abstract class CodeGenerator {
 
     public abstract Application getApp();
 
+    private static final String dbUrl ="jdbc:mysql://182.61.40.111:3306/sample?serverTimezone=UTC";
 
-    public void generateByTables(Application app,String ... tableNames) {
-        // 代码生成器
-        AutoGenerator mpg = new AutoGenerator();
+    private static final String userName ="root";
 
-        // 全局配置
-        GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("chz");
-        gc.setOpen(false);
-        gc.setMapperName("%sDao");
-        gc.setServiceName("%sService");
-        mpg.setGlobalConfig(gc);
+    private static final String password ="Mypassword@123";
+
+    private static final String driverName ="com.mysql.jdbc.Driver";
+
+    private Application app;
+    // 模块路径前缀
+    private String projectPath;
+
+    public CodeGenerator(Application app){
+        this.app = app;
+        projectPath = System.getProperty("user.dir")+"\\"+ app.getPath()[1];
+    }
+
+    public String getProjectPath() {
+        return projectPath;
+    }
+
+    public void generateByTables(Application app, String ... tableNames) {
 
         // 数据源配置
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://182.61.40.111:3306/sample?serverTimezone=UTC");
-        // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("Mypassword@123");
-        mpg.setDataSource(dsc);
+        DataSourceConfig dsc = getDataSourceConfig();
+
+
+        // 策略配置
+        StrategyConfig strategy = getStrategyConfig(tableNames);
+
+
+        // 全局配置
+        GlobalConfig gc = getGlobalConfig();
 
         // 包配置
-        PackageConfig pc = new PackageConfig();
-        //pc.setModuleName(scanner("模块名"));
-        pc.setParent(app.getPath()[0]).setController("controller").setMapper("dao");
-        mpg.setPackageInfo(pc);
+        PackageConfig pc = getPackageConfig(app);
 
         // 自定义配置
+        InjectionConfig cfg = getInjectionConfig();
+
+        // 代码生成器
+        new AutoGenerator()
+                .setDataSource(dsc)
+                .setStrategy(strategy)
+                .setGlobalConfig(gc)
+                .setPackageInfo(pc)
+                .setCfg(cfg)
+                .setTemplate(new TemplateConfig().setXml("/templates/mapper.xml"))
+                .setTemplateEngine(new FreemarkerTemplateEngine())
+                .execute();
+    }
+
+    public DataSourceConfig getDataSourceConfig(){
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl(dbUrl)
+                .setDbType(DbType.MYSQL)
+                .setDriverName(driverName)
+                .setUsername(userName)
+                .setPassword(password);
+
+        return dsc;
+    }
+
+    public StrategyConfig getStrategyConfig(String... tableNames){
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setNaming(NamingStrategy.underline_to_camel)
+                .setColumnNaming(NamingStrategy.underline_to_camel)
+                .setEntityLombokModel(true)
+                .setRestControllerStyle(true)
+                .setInclude(tableNames)
+                .setTablePrefix("tb_")
+                .setControllerMappingHyphenStyle(true);
+
+        return strategy;
+    }
+
+    public GlobalConfig getGlobalConfig(){
+        GlobalConfig gc = new GlobalConfig();
+        gc.setOutputDir(projectPath + "/src/main/java")
+                .setAuthor("chz")
+                .setOpen(false)
+                // .setFileOverride(true)
+                .setEnableCache(false)
+                .setMapperName("%sMapper")
+                .setServiceName("%sService");
+
+        return gc;
+    }
+
+    public PackageConfig getPackageConfig(Application app){
+        PackageConfig pc = new PackageConfig();
+        pc.setParent(app.getPath()[0])
+                .setEntity("entity")
+                .setController("controller")
+                .setService("service")
+                .setServiceImpl("service.impl")
+                .setMapper("dao");
+
+        return pc;
+    }
+
+    public InjectionConfig getInjectionConfig(){
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -60,35 +131,18 @@ public abstract class CodeGenerator {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
                 return projectPath + "/src/main/resources/mapper/"
-                        + "/" + tableInfo.getEntityName() + "Mapper.xml";
+                        +tableInfo.getEntityName().replace("Entity","") + "Mapper.xml";
             }
         });
 
         cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);
-        mpg.setTemplate(new TemplateConfig().setXml("/templates/mapper.xml"));
 
-        // 策略配置
-        StrategyConfig strategy = new StrategyConfig();
-        strategy.setNaming(NamingStrategy.underline_to_camel);
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-       // strategy.setSuperEntityClass("com.baomidou.ant.common.BaseEntity");
-        strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
-        //strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
-        strategy.setInclude(tableNames);
-        //strategy.setSuperEntityColumns("id");
-        strategy.setTablePrefix("tb_sys_","sys_","tb_");
-        strategy.setControllerMappingHyphenStyle(true);
-       // strategy.setTablePrefix(pc.getModuleName() + "_");
-        mpg.setStrategy(strategy);
-        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-        mpg.execute();
+        return cfg;
     }
 
 
     public void generateByTables(String... tableNames){
-        generateByTables(getApp(), tableNames);
+        generateByTables(app, tableNames);
     }
 
 }

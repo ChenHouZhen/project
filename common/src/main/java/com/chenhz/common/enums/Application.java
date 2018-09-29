@@ -1,11 +1,11 @@
 package com.chenhz.common.enums;
 
 public enum Application {
-    COMMON(new String[]{"com.chenhz.common"}),
-    FAKER(new String[]{"com.chenhz.faker"}),
-    HTTP(new String[]{"com.chenhz.http"}),
-    TEST(new String[]{"com.chenhz.test"}),
-    TPOS(new String[]{"com.chenhz.tpos"});
+    COMMON(new String[]{"com.chenhz.common","common"}),
+    FAKER(new String[]{"com.chenhz.faker","faker"}),
+    HTTP(new String[]{"com.chenhz.http","http"}),
+    TEST(new String[]{"com.chenhz.test","test"}),
+    TPOS(new String[]{"com.chenhz.tpos","tpos"});
 
 
     private String[] path;

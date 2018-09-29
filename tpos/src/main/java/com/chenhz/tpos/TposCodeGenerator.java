@@ -1,26 +1,26 @@
-package com.chenhz.faker;
+package com.chenhz.tpos;
 
+import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.chenhz.common.CodeGenerator;
 import com.chenhz.common.enums.Application;
 
-public class FakerCodeGenerator extends CodeGenerator {
+public class TposCodeGenerator extends CodeGenerator {
 
 
-    private FakerCodeGenerator(Application app) {
+    private TposCodeGenerator(Application app) {
         super(app);
     }
 
     @Override
     public Application getApp() {
-        return Application.FAKER;
+        return Application.TPOS;
     }
 
 
-
     public static void main(String[] args) {
-        FakerCodeGenerator fakerCodeGenerator = new FakerCodeGenerator(Application.FAKER);
-        fakerCodeGenerator.generateByTables("sys_log");
+        TposCodeGenerator tposCodeGenerator = new TposCodeGenerator(Application.TPOS);
+        tposCodeGenerator.generateByTables("sys_log");
     }
 
     @Override
@@ -28,4 +28,5 @@ public class FakerCodeGenerator extends CodeGenerator {
         return super.getGlobalConfig()
                 .setMapperName("%sDao");
     }
+
 }
