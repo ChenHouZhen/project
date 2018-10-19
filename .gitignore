@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 =======
 /target/
@@ -26,4 +25,5 @@
 /dist/
 /nbdist/
 /.nb-gradle/
->>>>>>> 44a536922da79a41844e5b63b4df3e740b674aca
+
+text.txt
