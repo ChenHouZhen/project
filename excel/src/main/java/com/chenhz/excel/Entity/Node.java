@@ -1,9 +1,10 @@
 package com.chenhz.excel.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node<E> {
+public class Node<E> implements Serializable{
     E item;
     List<Node<E>> nexts;
     Node<E> prev;
@@ -58,10 +59,19 @@ public class Node<E> {
 
 //    @Override
 //    public String toString() {
-//        return "Node{" +
-//                "item=" + item +
-//                ", nexts=" + nexts +
-//                ", prev=" + prev +
-//                '}';
+////        if (nexts == null || nexts.size()==0){
+////            return "},";
+////        }
+////        StringBuilder sb = new StringBuilder("item=" + item + ", nexts=" +"Node{" );
+////        for (Node<E> n:nexts) {
+////            sb.append(n);
+////        }
+//////        sb.append(", prev=" + (prev.item == null? "" : prev.item) + '}');
+////
+////        return sb.toString();
+//
+//
 //    }
+
+
 }
