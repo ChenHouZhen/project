@@ -19,6 +19,7 @@ public class Read {
     public static final String SAMPLE_XLS_FILE_PATH = "file/java课程总体设计.xls";
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
+        long before = System.currentTimeMillis();
         File file = new ClassPathResource(SAMPLE_XLS_FILE_PATH).getFile();
 //        Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLS_FILE_PATH));
         Workbook workbook = WorkbookFactory.create(file);
@@ -58,24 +59,11 @@ public class Read {
                     finalNode = finalNode.getNextLast();
                 }
             }
-
             finalNode = topNode;
-
-//            Row row = rowIterator.next();
-//
-//            Iterator<Cell> cellIterator = row.cellIterator();
-//
-//            while (cellIterator.hasNext()){
-//                Cell cell = cellIterator.next();
-//                String cellValue = dataFormatter.formatCellValue(cell);
-//                if (StringUtils.isBlank(cellValue)){
-//                    cellValue = "---------";
-//                }
-//                System.out.print(cellValue + "\t");
-//            }
-//            System.out.println();
         }
         // Closing the workbook
         workbook.close();
+        long after = System.currentTimeMillis();
+        System.out.println("Time use is :" +(after-before));
     }
 }
