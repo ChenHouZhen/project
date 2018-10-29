@@ -24,6 +24,7 @@
 		<module>http</module>
 		<module>tpos</module>
 		<module>neo4j</module>
+		<module>excel</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
