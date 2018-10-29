@@ -1,5 +1,6 @@
 package com.chenhz.excel.controller;
 import com.chenhz.excel.Entity.E;
+import com.chenhz.excel.Entity.Node;
 import com.chenhz.excel.Entity.User;
 import com.chenhz.excel.utils.DateUtils;
 import com.chenhz.excel.utils.ExportExcel;
@@ -111,6 +112,37 @@ public class UserController {
             logger.error("导入失败",e);
         }
     }
+
+    /*@RequestMapping(value = "import/n",method = RequestMethod.POST)
+    public void importN(@RequestParam("file") MultipartFile multipartFile){
+        try {
+            int successNum = 0;
+            int failureNum = 0;
+            StringBuilder failureMsg = new StringBuilder();
+            ImportExcel ei = new ImportExcel(multipartFile, 1, 0);
+//            List<E> list = ei.getDataList(E.class);
+            List<Node> list = ei.getDataList(Node.class);
+            for (E e : list){
+                try{
+                    //to do: 保存处理数据
+                    //userService.save(user);
+                    logger.info(e.toString());
+                    successNum++;
+                }catch(ConstraintViolationException ex){
+                    failureNum++;
+                }catch (Exception ex) {
+                    failureNum++;
+                }
+            }
+
+            if (failureNum>0){
+                failureMsg.insert(0, ", Failures: "+failureNum);
+            }
+            logger.info("Had Operation "+successNum+" Data;"+" "+"Failure "+failureNum);
+        } catch (Exception e) {
+            logger.error("导入失败",e);
+        }
+    }*/
 
     /**
      *

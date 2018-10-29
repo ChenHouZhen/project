@@ -10,11 +10,12 @@ import java.util.Iterator;
 
 public class ExcelRead {
 
-    public static final String SAMPLE_XLS_FILE_PATH = "file/sample-xls-file.xls";
+//    public static final String SAMPLE_XLS_FILE_PATH = "file/sample-xls-file.xls";
     public static final String SMMPLE_XLSX_FILE_PATH = "file/sample-xlsx-file.xlsx";
+    public static final String SAMPLE_XLS_FILE_PATH = "file/java课程总体设计.xls";
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        File file = new ClassPathResource(SMMPLE_XLSX_FILE_PATH).getFile();
+        File file = new ClassPathResource(SAMPLE_XLS_FILE_PATH).getFile();
 //        Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLS_FILE_PATH));
         Workbook workbook = WorkbookFactory.create(file);
         System.out.println("Workbook hsa "+workbook.getNumberOfSheets()+" Sheets");
