@@ -1,5 +1,7 @@
 package com.chenhz.excel.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.chenhz.common.entity.ZNode;
 import com.chenhz.excel.example.KonwledgeReadExample;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -20,7 +22,8 @@ public class KonwledgeExcelRead {
 
     @GetMapping("/node")
     public List<ZNode> node() throws IOException, InvalidFormatException {
-        return KonwledgeReadExample.zNode();
+//        JSONObject.toJSONString();
+        return KonwledgeReadExample.zNode() ;
     }
 
 }
