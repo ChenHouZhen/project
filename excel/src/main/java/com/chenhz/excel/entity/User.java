@@ -1,4 +1,4 @@
-package com.chenhz.excel.Entity;
+package com.chenhz.excel.entity;
 
 import com.chenhz.excel.utils.DateUtils;
 import com.chenhz.excel.utils.ExcelField;

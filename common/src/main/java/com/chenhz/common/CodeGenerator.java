@@ -131,7 +131,7 @@ public abstract class CodeGenerator {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
                 return projectPath + "/src/main/resources/mapper/"
-                        +tableInfo.getEntityName().replace("Entity","") + "Mapper.xml";
+                        +tableInfo.getEntityName().replace("entity","") + "Mapper.xml";
             }
         });
 

@@ -331,7 +331,7 @@ public class ConfigBuilder {
             if(tbName.startsWith("Tb")){
                 tbName = tbName.substring(2, tbName.length()) ;
             }
-            tableInfo.setEntityName(strategyConfig, tbName+ "Entity");
+            tableInfo.setEntityName(strategyConfig, tbName+ "entity");
             if (StringUtils.isNotEmpty(globalConfig.getMapperName())) {
                 tableInfo.setMapperName(String.format(globalConfig.getMapperName(), tbName));
             } else {

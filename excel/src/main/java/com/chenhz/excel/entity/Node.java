@@ -1,13 +1,13 @@
-package com.chenhz.excel.Entity;
+package com.chenhz.excel.entity;
+
+import com.chenhz.common.entity.ZNode;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Node<E> implements Serializable{
     E item;
+    String id;
     List<Node<E>> nexts;
     Node<E> prev;
 
@@ -15,12 +15,14 @@ public class Node<E> implements Serializable{
         this.item = element;
         this.nexts = next;
         this.prev = prev;
+        this.id = UUID.randomUUID().toString();
     }
 
     public Node(E element){
         this.item = element;
         this.nexts = new ArrayList<>();
         this.prev = null;
+        this.id = UUID.randomUUID().toString();
     }
 
     public Node addNext(Node<E> n){
@@ -29,6 +31,14 @@ public class Node<E> implements Serializable{
         }
         nexts.add(n);
         return this;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = UUID.randomUUID().toString();
     }
 
     public E getItem() {
@@ -74,22 +84,37 @@ public class Node<E> implements Serializable{
             }
             m.put("next",l);
         }
-
         return m;
     }
 
-//    public String iterator(Node<E> top){
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("\n");
-//        if (top != null){
-//            for (Node n : top.nexts){
-//                sb.append(n.item+",");
-//                if (n.getNexts() != null && n.getNexts().size() >0){
-//                    sb.append(iterator(n));
-//                }
-//            }
-//        }
-//        sb.append("\n");
-//        return sb.toString();
-//    }
+    public List<ZNode> getBackList(){
+        ZNode zNode = new ZNode();
+        zNode.setPid(null);
+        zNode.setId(this.id);
+        zNode.setName(this.item.toString());
+        zNode.setLever(0);
+        List<ZNode> treeList = new ArrayList<>();
+        treeList.add(zNode);
+        List<Node<E>> children = this.nexts;
+        return iterator(children,1,treeList);
+    }
+
+
+    private List<ZNode> iterator(List<Node<E>> allChildren, int level, List<ZNode> treeList){
+        for (Node n : allChildren){
+            ZNode zNode = new ZNode();
+            zNode.setId(n.id);
+            zNode.setLever(level);
+            zNode.setName(n.item.toString());
+            zNode.setPid(n.prev.getId());
+            treeList.add(zNode);
+            List<Node<E>> children = n.nexts;
+            if (children != null && children.size() > 0){
+                iterator(children,level+1,treeList);
+            }
+
+        }
+        return treeList;
+    }
+
 }
