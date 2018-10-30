@@ -15,6 +15,7 @@ import springfox.documentation.spring.web.json.Json;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author CHZ
@@ -25,7 +26,7 @@ import java.util.Iterator;
 public class Read {
 
     @GetMapping("/read")
-    public Node read() throws IOException {
+    public Map<String,Object> read() throws IOException {
         long before = System.currentTimeMillis();
         File file = new ClassPathResource(SAMPLE_XLS_FILE_PATH).getFile();
 //        Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLS_FILE_PATH));
@@ -72,7 +73,7 @@ public class Read {
         workbook.close();
         long after = System.currentTimeMillis();
         System.out.println("Time use is :" +(after-before) +".ms");
-        return topNode;
+        return topNode.iteratopMap(topNode);
     }
 
     public static final String SAMPLE_XLS_FILE_PATH = "file/java课程总体设计.xls";
@@ -124,6 +125,5 @@ public class Read {
         workbook.close();
         long after = System.currentTimeMillis();
         System.out.println("Time use is :" +(after-before) +".ms");
-        System.out.println(topNode);
     }
 }

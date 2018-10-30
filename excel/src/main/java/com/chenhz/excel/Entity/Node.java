@@ -2,7 +2,9 @@ package com.chenhz.excel.Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Node<E> implements Serializable{
     E item;
@@ -57,21 +59,37 @@ public class Node<E> implements Serializable{
         return prev;
     }
 
-//    @Override
-//    public String toString() {
-////        if (nexts == null || nexts.size()==0){
-////            return "},";
-////        }
-////        StringBuilder sb = new StringBuilder("item=" + item + ", nexts=" +"Node{" );
-////        for (Node<E> n:nexts) {
-////            sb.append(n);
-////        }
-//////        sb.append(", prev=" + (prev.item == null? "" : prev.item) + '}');
-////
-////        return sb.toString();
-//
-//
+    public Map<String,Object> iteratopMap(Node<E> top){
+        Map<String,Object> m = new HashMap<>();
+        m.put("value",top.item);
+        if (top != null){
+            List<Map<String,Object>> l = new ArrayList<>();
+            for (Node n :top.nexts){
+                Map<String,Object> mm = new HashMap<>();
+                mm.put("value",n.item);
+                l.add(mm);
+                if (n.getNexts() != null && n.getNexts().size() > 0){
+                    mm.putAll(iteratopMap(n));
+                }
+            }
+            m.put("next",l);
+        }
+
+        return m;
+    }
+
+//    public String iterator(Node<E> top){
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\n");
+//        if (top != null){
+//            for (Node n : top.nexts){
+//                sb.append(n.item+",");
+//                if (n.getNexts() != null && n.getNexts().size() >0){
+//                    sb.append(iterator(n));
+//                }
+//            }
+//        }
+//        sb.append("\n");
+//        return sb.toString();
 //    }
-
-
 }
