@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class XmindWrite {
 
-    public static final String SAMPLE_XLS_FILE_PATH = new XmindWrite().getClass().getResource("/").getPath()+"/file/write.xmind";
+    public static final String SAMPLE_XLS_FILE_PATH = new XmindWrite().getClass().getResource("/").getPath()+"/file/ExportXmind.xmind";
 
 
     public static void main(String[] args) throws IOException, CoreException {

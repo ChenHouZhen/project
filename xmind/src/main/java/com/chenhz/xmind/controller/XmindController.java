@@ -1,6 +1,6 @@
 package com.chenhz.xmind.controller;
 
-import com.chenhz.xmind.example.XmindRead;
+import com.chenhz.xmind.example.CollectionFrameRead;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xmind.core.CoreException;
@@ -12,6 +12,6 @@ public class XmindController {
 
     @GetMapping("/read")
     public String read() throws IOException, CoreException {
-        return XmindRead.getTree();
+        return CollectionFrameRead.getTree();
     }
 }

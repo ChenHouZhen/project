@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XmindRead {
+public class CollectionFrameRead {
 
     public static final String SAMPLE_XLS_FILE_PATH = "file/集合框架.xmind";
 
