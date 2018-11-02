@@ -14,6 +14,10 @@ public class TreeNodeFactory {
         TreeNode<String> level22 = new TreeNode<>("知识整理");
         TreeNode<String> level23 = new TreeNode<>("记读书笔记");
 
+        Topic.addNext(level1);
+        Topic.addNext(level2);
+        Topic.addNext(level3);
+        Topic.addNext(level4);
         level1.setPrev(Topic);
         level2.setPrev(Topic);
         level3.setPrev(Topic);

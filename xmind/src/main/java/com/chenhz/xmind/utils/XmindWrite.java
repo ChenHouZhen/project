@@ -2,6 +2,9 @@ package com.chenhz.xmind.utils;
 
 import org.springframework.core.io.ClassPathResource;
 import org.xmind.core.*;
+import org.xmind.core.style.IStyle;
+import org.xmind.core.style.IStyleSheet;
+import org.xmind.ui.style.Styles;
 
 import java.awt.*;
 import java.io.File;
@@ -28,7 +31,7 @@ public class XmindWrite {
         ITopic topic1 = iWorkbook.createTopic();
         // 字体
         topic1.setTitleText("节点1");
-        topic1.setTitleWidth(18);
+        topic1.setTitleWidth(200);
         ITopic topic2 = iWorkbook.createTopic();
         topic2.setTitleText("节点2");
         ITopic topic3 = iWorkbook.createTopic();
@@ -40,6 +43,20 @@ public class XmindWrite {
         org.xmind.core.util.Point defPoint = new org.xmind.core.util.Point(500 ,-400);
 
         topic3.setPosition(defPoint);
+
+        // 样式定义
+//        IStyle iStyle = Core.getStyleSheetBuilder().-
+        IStyleSheet iStyleSheet = iWorkbook.getStyleSheet();
+        IStyle iStyle = iStyleSheet.createStyle(IStyle.TOPIC);
+        iStyle.setProperty(Styles.FillColor, "0xececec");  // fill color black
+        iStyle.setProperty(Styles.TextColor, "0xffffff");  // text color white
+        topic1.setStyleId(iStyle.getId());
+        iStyleSheet.addStyle(iStyle,IStyleSheet.NORMAL_STYLES);
+//        IStyle iStyle1 = iStyleSheet.findStyle(rootTopic.getId());
+//        System.out.println(iStyle1.getProperty(Styles.FillColor));
+//        System.out.println(iStyle1.getProperty(Styles.TextColor));
+//        System.out.println(iStyle1.getProperty(Styles.LineWidth));
+//
 
         rootTopic.add(topic1);
         // ITopic.DETACHED : 分离
