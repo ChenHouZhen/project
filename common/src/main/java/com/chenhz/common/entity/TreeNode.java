@@ -41,6 +41,10 @@ public class TreeNode<E> {
         this.id = UUIDGenerate.create();
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public E getValue() {
         return value;
     }
@@ -73,7 +77,18 @@ public class TreeNode<E> {
         return this;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TreeNode)){
+            return false;
+        }
+        return super.equals(obj);
+    }
 
     public static void main(String[] args) {
         TreeNode<String> n1 = new TreeNode<>("w");

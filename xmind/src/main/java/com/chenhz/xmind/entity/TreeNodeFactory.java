@@ -1,6 +1,10 @@
 package com.chenhz.xmind.entity;
 
 import com.chenhz.common.entity.TreeNode;
+import com.chenhz.common.entity.ZNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TreeNodeFactory {
 
@@ -32,4 +36,30 @@ public class TreeNodeFactory {
 
         return Topic;
     }
+
+
+    public static List<ZNode> createZNode(){
+
+        List<ZNode> list = new ArrayList<>();
+        ZNode zNode1 = new ZNode("1",null,"ZhiMap介绍");
+        ZNode zNode2 = new ZNode("10","1","ZhiMap是什么？");
+        ZNode zNode3 = new ZNode("11","1","有什么用？");
+        ZNode zNode4 = new ZNode("12","1","更多帮助");
+        ZNode zNode5 = new ZNode("13","1","ZhiMap怎么学？");
+        ZNode zNode6 = new ZNode("130","13","写提纲、列计划");
+        ZNode zNode7 = new ZNode("131","13","知识整理");
+        ZNode zNode8 = new ZNode("132","13","记读书笔记");
+
+        list.add(zNode1);
+        list.add(zNode2);
+        list.add(zNode3);
+        list.add(zNode4);
+        list.add(zNode5);
+        list.add(zNode6);
+        list.add(zNode7);
+        list.add(zNode8);
+
+        return list;
+    }
+
 }

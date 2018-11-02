@@ -2,6 +2,14 @@ package com.chenhz.common.entity;
 
 public class ZNode {
 
+    public ZNode(){}
+
+    public ZNode(String id, String pid, String name) {
+        this.id = id;
+        this.pid = pid;
+        this.name = name;
+    }
+
     private String id;
 
     private String pid;

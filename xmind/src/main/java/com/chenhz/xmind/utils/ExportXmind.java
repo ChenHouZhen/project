@@ -1,11 +1,13 @@
 package com.chenhz.xmind.utils;
 
 import com.chenhz.common.entity.TreeNode;
+import com.chenhz.common.entity.ZNode;
 import com.chenhz.xmind.entity.TreeNodeFactory;
 import org.apache.http.util.EncodingUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xmind.core.*;
+import sun.reflect.generics.tree.Tree;
 //import org.xmind.core.net.internal.EncodingUtils;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ExportXmind {
 
@@ -39,7 +43,8 @@ public class ExportXmind {
 
 
     public static void main(String[] args) throws IOException, CoreException {
-        TreeNode<String> tree = TreeNodeFactory.create();
+//        TreeNode<String> tree = TreeNodeFactory.create();
+        List<ZNode> tree = TreeNodeFactory.createZNode();
         ExportXmind exportXmind = new ExportXmind().setDataList(tree).writeFile(SAMPLE_XLS_FILE_PATH);
     }
 
@@ -53,10 +58,45 @@ public class ExportXmind {
 
 
     public <E> ExportXmind setDataList(TreeNode<E> rootNode){
+        if (rootNode == null){
+            throw new IllegalArgumentException("参数为 null");
+        }
         log.debug(">>>   插入数据开始...");
         ITopic rootTopic = this.iSheet.getRootTopic();
         rootTopic.setTitleText((String) rootNode.getValue());
         cycleTopic(rootTopic,rootNode);
+        log.debug("<<<   插入数据结束...");
+        return this;
+    }
+
+    public <E> ExportXmind setDataList(List<ZNode> nodes){
+        log.debug(">>>   插入数据开始...");
+        List<TreeNode<E>> listTreeNode = new ArrayList<>();
+        TreeNode<E> root = null;
+        for (ZNode znode : nodes) {
+            TreeNode<E> presentTreeNode = listTreeNode.stream()
+                    .filter(item ->znode.getId().equals(item.getId()))
+                    .findFirst()
+                    .orElseGet(TreeNode::new);
+
+            TreeNode<E> preTreeNode = listTreeNode.stream()
+                    .filter(item ->znode.getId().equals(item.getId()))
+                    .findFirst()
+                    .orElseGet(TreeNode::new);
+
+            presentTreeNode.setId(znode.getId());
+            listTreeNode.add(presentTreeNode);
+//            boolean idExists = listTreeNode.stream().anyMatch(n -> n.getId().equals(znode.getPid()));
+            preTreeNode.addNext(presentTreeNode);
+
+            if (znode.getPid() == null){
+                root = presentTreeNode;
+            }else {
+                presentTreeNode.setPrev(preTreeNode);
+            }
+        }
+        System.out.println();
+        setDataList(root);
         log.debug("<<<   插入数据结束...");
         return this;
     }
