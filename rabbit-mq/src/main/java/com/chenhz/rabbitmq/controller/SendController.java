@@ -1,7 +1,12 @@
 package com.chenhz.rabbitmq.controller;
 
 import com.chenhz.common.entity.R;
+import com.chenhz.rabbitmq.ack.RabbitAckSender;
 import com.chenhz.rabbitmq.direct.RabbitDirectSender;
+import com.chenhz.rabbitmq.fanout.RabbitFanoutSender;
+import com.chenhz.rabbitmq.topic.RabbitTopicSender;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,20 +14,68 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("send")
+@Api(tags = "发送消息队列")
 public class SendController {
 
     @Autowired
-    RabbitDirectSender sender;
+    RabbitDirectSender directSender;
 
-    @PostMapping("/h")
+    @Autowired
+    RabbitFanoutSender fanoutSender;
+
+    @Autowired
+    RabbitTopicSender topicSender;
+
+    @Autowired
+    RabbitAckSender ackSender;
+
+    @PostMapping("/direct/h")
+    @ApiOperation("directExchange")
     public R sendHello(){
-        sender.sendHello();
+        directSender.sendHello();
         return R.ok();
     }
 
-    @PostMapping("/s")
+    @PostMapping("/direct/s")
     public R sendDirect(){
-        sender.sendDirect();
+        directSender.sendDirect();
         return R.ok();
     }
+
+    @PostMapping("/fanout/p")
+    public R sendPenglei(){
+        fanoutSender.sendPenglei();
+        return R.ok();
+    }
+
+    @PostMapping("/fanout/s")
+    public R sendSouyunku(){
+        fanoutSender.sendSouyunku();
+        return R.ok();
+    }
+
+    @PostMapping("/topic/m")
+    public R sendMessage(){
+        topicSender.sendMessage();
+        return R.ok();
+    }
+
+    @PostMapping("/topic/ms")
+    public R sendMessages(){
+        topicSender.sendMessages();
+        return R.ok();
+    }
+    @PostMapping("/topic/y")
+    public R sendYmq(){
+        topicSender.sendYmq();
+        return R.ok();
+    }
+
+    @PostMapping("/ack/a")
+    public R sendACK(String message){
+        ackSender.sendMessage(message);
+        return R.ok();
+    }
+
+
 }
