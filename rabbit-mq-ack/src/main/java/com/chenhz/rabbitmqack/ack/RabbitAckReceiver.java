@@ -1,4 +1,4 @@
-package com.chenhz.rabbitmq.ack;
+package com.chenhz.rabbitmqack.ack;
 
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
@@ -25,6 +25,7 @@ public class RabbitAckReceiver {
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
             //消息确认  因为我在属性配置文件里面开启了ACK确认 所以如果代码没有执行ACK确认 你在RabbitMQ的后台会看到消息会一直留在队列里面未消费掉 只要程序一启动开始接受该队列消息的时候 又会收到
             logger.info("消息接收成功");
+//            throw new IOException("daa");
         } catch (IOException e) {
             e.printStackTrace();
             logger.info("HelloReceiver 消息接收失败");

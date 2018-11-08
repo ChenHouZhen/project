@@ -1,4 +1,4 @@
-package com.chenhz.rabbitmq.config;
+package com.chenhz.rabbitmqack.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

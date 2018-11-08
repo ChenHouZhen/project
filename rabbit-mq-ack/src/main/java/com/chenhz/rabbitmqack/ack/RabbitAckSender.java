@@ -1,8 +1,9 @@
-package com.chenhz.rabbitmq.ack;
+package com.chenhz.rabbitmqack.ack;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,21 @@ public class RabbitAckSender implements RabbitTemplate.ReturnCallback,RabbitTemp
     private Logger logger = LoggerFactory.getLogger(RabbitAckSender.class);
 
     @Autowired
+    private CachingConnectionFactory connectionFactory;
+
+    @Autowired
     private RabbitTemplate rabbitTemplate;
 
     public void sendMessage(String context){
-        // 消息发送失败返回到队列中, application.properties 配置 spring.rabbitmq.publisher-returns=true
-        rabbitTemplate.setMandatory(true);
 
-        this.rabbitTemplate.setReturnCallback(this);
+//        connectionFactory.setPublisherConfirms(true);
+//        connectionFactory.setPublisherReturns(true);
+//        // 消息发送失败返回到队列中, application.properties 配置 spring.rabbitmq.publisher-returns=true
+//        rabbitTemplate = new RabbitTemplate(connectionFactory);
+//
+//        rabbitTemplate.setMandatory(true);
+//
+//        rabbitTemplate.setReturnCallback(this);
 
 //        this.rabbitTemplate.setConfirmCallback((correlationData, ack, cause)->{
 //            if (!ack){
@@ -31,11 +40,11 @@ public class RabbitAckSender implements RabbitTemplate.ReturnCallback,RabbitTemp
 //        });
 
 
-        this.rabbitTemplate.setConfirmCallback(this);
-
+//        this.rabbitTemplate.setConfirmCallback(this);
+//
         logger.info("HelloSender 发送的消息内容：{}", context);
 
-        this.rabbitTemplate.convertAndSend("hello", context);
+        this.rabbitTemplate.convertAndSend("ack", context);
 
     }
 
@@ -47,7 +56,7 @@ public class RabbitAckSender implements RabbitTemplate.ReturnCallback,RabbitTemp
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String s) {
-        logger.info("消息id: " + correlationData + "确认" + (ack ? "成功:" : "失败"));
+//        logger.info("消息id: " + correlationData + "确认" + (ack ? "成功:" : "失败"));
     }
 
 
@@ -59,7 +68,7 @@ public class RabbitAckSender implements RabbitTemplate.ReturnCallback,RabbitTemp
      */
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-        logger.info("return--message:" + new String(message.getBody()) + ",replyCode:" + replyCode + ",replyText:" + replyText + ",exchange:" + exchange + ",routingKey:" + routingKey);
+//        logger.info("return--message:" + new String(message.getBody()) + ",replyCode:" + replyCode + ",replyText:" + replyText + ",exchange:" + exchange + ",routingKey:" + routingKey);
 
     }
 }

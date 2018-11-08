@@ -1,7 +1,6 @@
 package com.chenhz.rabbitmq.controller;
 
 import com.chenhz.common.entity.R;
-import com.chenhz.rabbitmq.ack.RabbitAckSender;
 import com.chenhz.rabbitmq.direct.RabbitDirectSender;
 import com.chenhz.rabbitmq.fanout.RabbitFanoutSender;
 import com.chenhz.rabbitmq.topic.RabbitTopicSender;
@@ -26,8 +25,6 @@ public class SendController {
     @Autowired
     RabbitTopicSender topicSender;
 
-    @Autowired
-    RabbitAckSender ackSender;
 
     @PostMapping("/direct/h")
     @ApiOperation("directExchange")
@@ -71,11 +68,6 @@ public class SendController {
         return R.ok();
     }
 
-    @PostMapping("/ack/a")
-    public R sendACK(String message){
-        ackSender.sendMessage(message);
-        return R.ok();
-    }
 
 
 }
