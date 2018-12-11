@@ -1,5 +1,7 @@
 package com.chenhz.common.entity;
 
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 // In a real world app, this should be an Entity!
@@ -24,12 +26,15 @@ public class User {
 
     private String phoneNumber;
 
+    // 1：男 0：女
+    private Integer sex;
+
     public User() {
 
     }
 
     public User(String firstName, String lastName, Integer age, String jobTitle, String company, String address,
-                String city, String country, String phoneNumber) {
+                String city, String country, String phoneNumber,Integer sex) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +45,7 @@ public class User {
         this.city = city;
         this.country = country;
         this.phoneNumber = phoneNumber;
+        this.sex = sex;
     }
 
     public String getFirstName() {
