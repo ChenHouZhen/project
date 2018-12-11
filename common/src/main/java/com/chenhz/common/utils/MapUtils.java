@@ -69,7 +69,6 @@ public class MapUtils extends HashMap<String, Object> {
     }
 
 
-
     /**
      * object 转 Object
      * @param map object

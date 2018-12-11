@@ -27,7 +27,7 @@ public class UserGenerate {
                         appUtil.generateRandomChars(candidateChars, 15), appUtil.generateRandomChars(candidateChars,
                         15), appUtil.generateRandomChars(candidateChars, 20),
                         appUtil.generateRandomChars(candidateChars, 10), appUtil.generateRandomChars(candidateChars,
-                        10), appUtil.generateRandomChars(candidateNum, 10)))
+                        10), appUtil.generateRandomChars(candidateNum, 10),1))
                 .collect(Collectors.toList());
 
     }
