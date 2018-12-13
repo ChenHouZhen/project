@@ -158,7 +158,7 @@ public class Reflections {
      */
     public static Method getAccessibleMethod(final Object obj, final String methodName,
                                              final Class<?>... parameterTypes) {
-        Validate.notNull(obj, "object can't be null");
+        Validate.notNull(obj, "object can'obt be null");
         Validate.notBlank(methodName, "methodName can't be blank");
 
         for (Class<?> searchType = obj.getClass(); searchType != Object.class; searchType = searchType.getSuperclass()) {
