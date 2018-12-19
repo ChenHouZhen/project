@@ -16,9 +16,6 @@ public class ExcelController {
 
     @PostMapping("/import")
     public String importExcel(@RequestParam("file")MultipartFile file){
-        System.out.println(file.getOriginalFilename());
-        List a = new ArrayList();
-        a.add("1");
-        List<String> ss= a.stream().map(d ->(d+"1")).collect(Collectors.toList())
+       return "";
     }
 }
