@@ -20,7 +20,6 @@ public class UserGenerate {
 
     public List<User> findAllUsers() {
 
-
         return IntStream.rangeClosed(1, 20)
                 .mapToObj(i -> new User(appUtil.generateRandomChars(candidateChars, 10), appUtil.generateRandomChars
                         (candidateChars, 10), appUtil.generateRandomInteger(i),
