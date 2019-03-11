@@ -297,6 +297,10 @@ public class ExportExcel {
     }
 
 
+    public Sheet getSheet() {
+        return sheet;
+    }
+
     /**
      * 添加一个单元格
      * @param row 添加的行
