@@ -22,7 +22,6 @@
 		<module>common</module>
 		<module>faker</module>
 		<module>http</module>
-		<module>neo4j</module>
 		<module>excel</module>
 		<module>xmind</module>
 		<module>rabbit-mq</module>
