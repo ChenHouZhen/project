@@ -22,5 +22,4 @@ public class SendController {
         return R.ok();
     }
 
-
 }
