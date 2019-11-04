@@ -23,8 +23,6 @@
 		<module>faker</module>
 		<module>http</module>
 		<module>excel</module>
-		<module>xmind</module>
-		<module>rabbit-mq</module>
 	</modules>
 
 
