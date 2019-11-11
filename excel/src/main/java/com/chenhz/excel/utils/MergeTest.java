@@ -1,17 +1,12 @@
 package com.chenhz.excel.utils;
 
 import com.chenhz.excel.entity.TeachGuide;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MergeTest {
 
@@ -27,14 +22,9 @@ public class MergeTest {
         // 获取第一个 sheet 文件
         XSSFSheet sheet = excel.getSheetAt(0);
 
-        // EXCEL 合并单元格
-//        sheet.addMergedRegion(new CellRangeAddress(7,
-//                10, 0, 0));
         List<TeachGuide> data =  new ImportExcel(file,0).getDataList(TeachGuide.class);
         int size = data.size();
         System.out.println("数据行数："+ size);
-
-        List<Map<String,Object>> merges = new ArrayList<>();
 
         // todo : 这个算法有点悬，待确认
         for (int i = 0; i < size;){
@@ -43,15 +33,9 @@ public class MergeTest {
                 if ( j == size || !data.get(i).getPhaseName().equals(data.get(j).getPhaseName())){
                     int end = j-1;
                     System.out.println("start ==> "+start +"  end ==> "+ end+ " phaseName: "+ data.get(i).getPhaseName());
-                    Map<String,Object> map = new HashMap<>(6);
                     if (end > start){
                         // 加上1 是因为有一行标题
-                        map.put("columnStart",start+1);
-                        map.put("columnEnd",end+1);
-                        map.put("rowStart",0);
-                        map.put("rowEnd",0);
-                        map.put("phaseName",data.get(i).getPhaseName());
-                        merges.add(map);
+                        sheet.addMergedRegion(new CellRangeAddress(start+1,end+1,0,0));
                     }
                     i = j;
                     break;
@@ -59,18 +43,7 @@ public class MergeTest {
             }
         }
 
-        for (Map<String,Object> merge : merges) {
-            sheet.addMergedRegion(new CellRangeAddress(Integer.valueOf(merge.get("columnStart")+"")
-                    , Integer.valueOf(merge.get("columnEnd")+"")
-                    , Integer.valueOf(merge.get("rowStart")+"")
-                    , Integer.valueOf(merge.get("rowEnd")+"")));
-        }
-        
-
-        System.out.println(merges);
-
         writeFile(excel,"E:\\test\\mergeResult.xlsx");
-
     }
 
 
