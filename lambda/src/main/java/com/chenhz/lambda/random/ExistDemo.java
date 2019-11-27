@@ -43,11 +43,15 @@ public class ExistDemo {
 
 
         System.out.println("----------- 交集 -----------------");
+
+        // 交集 List<Integer> prices
         System.out.println(listObj.stream().map(Book::getPrice).filter(prices::contains).collect(Collectors.toList()));
 
 
         System.out.println("----------- 差集 -----------------");
         System.out.println("----------- listObject - prices -----------------");
+
+        // 差集
         System.out.println(listObj.stream().map(Book::getPrice).filter(item -> !prices.contains(item)).collect(Collectors.toList()));
 
         System.out.println("----------- prices - listObject -----------------");
@@ -57,6 +61,7 @@ public class ExistDemo {
 
 
         System.out.println("----------- 并集 -----------------");
+        // 并集
         List<Integer> listAll = listObj.parallelStream().map(Book::getPrice).collect(Collectors.toList());
         List<Integer> listAll2 = prices.parallelStream().collect(Collectors.toList());
         listAll.addAll(listAll2);
