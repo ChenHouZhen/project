@@ -1,4 +1,4 @@
-package com.chenhz.faker.utils;
+package com.chenhz.common.utils;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Book;
@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.Locale;
 
 public class Fakers {

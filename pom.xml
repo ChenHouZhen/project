@@ -20,10 +20,10 @@
 
 	<modules>
 		<module>common</module>
-		<module>faker</module>
 		<module>http</module>
 		<module>excel</module>
-	</modules>
+        <module>demo</module>
+    </modules>
 
 
 	<properties>
