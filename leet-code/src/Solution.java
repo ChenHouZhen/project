@@ -80,6 +80,8 @@ public class Solution {
     @Test
     public void testAddTwoNumbers(){
         Assert.assertArrayEquals(linked2array(addTwoNumbers(array2linked(new int[]{0,1}), array2linked(new int[]{0,1,2}))), new int[]{0,2,2});
+        Assert.assertArrayEquals(linked2array(addTwoNumbers(array2linked(new int[]{}), array2linked(new int[]{0,1}))), new int[]{0,1});
+        Assert.assertArrayEquals(linked2array(addTwoNumbers(array2linked(new int[]{9,9}), array2linked(new int[]{1}))), new int[]{0,0,1});
     }
 }
 
